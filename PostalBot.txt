@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class PostalBot {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int boxCount;
+        double boxWeight;
+        String Name;
+        String Surname;
+        String Address;
+        boolean isCorrect;
+
+        System.out.println("Сколько коробок вы хотите отправить?");
+        boxCount = scanner.nextInt();
+
+        System.out.println("Сколько весит каждая коробка в киллограммах?");
+        boxWeight = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.println("Введите имя получателя посылки:");
+        Name = scanner.nextLine().toUpperCase();
+
+        System.out.println("Введите фамилию получателя посылки:");
+        Surname = scanner.nextLine().toUpperCase();
+
+        System.out.println("Введите адрес получателя посылки:");
+        Address = scanner.nextLine().toUpperCase();
+
+        do {
+            double totalWeight = boxCount * boxWeight;
+
+            System.out.println("Получатель: \"" + Name + " " + Surname + "\"");
+            System.out.println("Адрес получателя: \"" + Address + "\"");
+            System.out.printf("Вес посылки: %.2f кг%n", totalWeight);
+
+            System.out.println("-Все верно? (да/нет)");
+            String userResponse = scanner.nextLine();
+            isCorrect = userResponse.equalsIgnoreCase("да");
+
+            if (!isCorrect) {
+                System.out.println("Какой пункт исправить?");
+                System.out.println("1. Количество коробок");
+                System.out.println("2. Вес коробки");
+                System.out.println("3. Имя получателя");
+                System.out.println("4. Фамилия получателя");
+                System.out.println("5. Адрес получателя");
+
+                int option = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (option) {
+                    case 1:
+                        System.out.println("Сколько коробок вы хотите отправить?");
+                        boxCount = scanner.nextInt();
+                        break;
+                    case 2:
+                        System.out.println("Сколько весит каждая коробка в киллограммах?");
+                        boxWeight = scanner.nextDouble();
+                        break;
+                    case 3:
+                        System.out.println("Введите имя получателя посылки:");
+                        Name = scanner.nextLine().toUpperCase();
+                        break;
+                    case 4:
+                        System.out.println("Введите фамилию получателя посылки:");
+                        Surname = scanner.nextLine().toUpperCase();
+                        break;
+                    case 5:
+                        System.out.println("Введите адрес получателя посылки:");
+                        Address = scanner.nextLine().toUpperCase();
+                        break;
+                    default:
+                        System.out.println("Неверный выбор. Пожалуйста, попробуйте снова.");
+                        break;
+                }
+            }
+        } while (!isCorrect);
+
+        System.out.println("Благодарим за использование нашей службы доставки, приходите снова!");
+    }
+}
